@@ -1,6 +1,30 @@
 #outdoor {
-    height: 70vh;
+    height: 80vh;
     background-size: cover;
     background-position: center;
     background-image: url('https://blog.ipog.edu.br/wp-content/uploads/2018/05/Livro-de-contabilidade.jpg');
+}
+
+.top-gradient{
+    width: inherit;
+    height: 70px;
+    background: linear-gradient(to bottom, white, transparent);
+}
+
+.featured--vertical{
+    width: inherit;
+    height: inherit;
+    background: linear-gradient(to top, #111 10%, transparent);
+}
+
+.featured--horizontal{
+    width: inherit;
+    height: inherit;
+    background: linear-gradient(to right, #3c3c3e 30%, transparent 70%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 30px;
+    padding-bottom: 150px;
+    padding-top : 70px;
 }

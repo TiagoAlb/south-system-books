@@ -12,8 +12,8 @@ header{
     background: transparent;
     transition:  all ease 0.5s;
 }
-header.black{
-    background:#141414;  
+header.white{
+    background:white;  
 }
 .header-logo{
     height: 65px;    
@@ -43,5 +43,9 @@ header.black{
 
 .header-links-li a {
     text-decoration: none;
+    color: #3c3c3e;
+}
+
+.header-links-li a:hover {
     color: black;
 }
