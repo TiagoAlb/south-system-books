@@ -12,18 +12,23 @@ header{
     background: transparent;
     transition:  all ease 0.5s;
 }
-header.white{
-    background:white;  
+header.white {
+    background:white;
 }
-.header-logo{
+
+header.white .header-links-li a {
+    color:#3c3c3e;
+}
+
+.header-logo {
     height: 65px;    
 }
 
-.header-logo img{
+.header-logo img {
     height: 100%;
 }
 
-.header-user{
+.header-user {
     height: 35px;
 }
 
@@ -43,9 +48,9 @@ header.white{
 
 .header-links-li a {
     text-decoration: none;
-    color: #3c3c3e;
+    color: #E0E0E0;
 }
 
-.header-links-li a:hover {
-    color: black;
+header.white .header-links-li a:hover, .header-links-li a:hover {
+    color: #fc4f00;
 }

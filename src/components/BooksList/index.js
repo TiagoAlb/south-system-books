@@ -7,22 +7,19 @@ export default () => {
     function FormRow() {
         return (
             <React.Fragment>
-                <Grid item xs={2}>
+                <Grid item sm xs={12}>
                     <Card />
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item sm xs={12}>
                     <Card />
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item sm xs={12}>
                     <Card />
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item sm xs={12}>
                     <Card />
                 </Grid>
-                <Grid item xs={2}>
-                    <Card />
-                </Grid>
-                <Grid item xs={2}>
+                <Grid item sm xs={12}>
                     <Card />
                 </Grid>
             </React.Fragment>
@@ -31,15 +28,15 @@ export default () => {
 
     return (
         <section className='books-list'>
-            <h3>Livros</h3>
-            <Grid container spacing={4}>
-                <Grid container item xs={12} spacing={1}>
+            <h3 className='books-list-title'>Livros</h3>
+            <Grid container spacing={4} className="books-list-container">
+                <Grid container justify='center' item xs={12} spacing={1}>
                     <FormRow />
                 </Grid>
-                <Grid container item xs={12} spacing={1}>
+                <Grid container justify='center' item xs={12} spacing={1}>
                     <FormRow />
                 </Grid>
-                <Grid container item xs={12} spacing={1}>
+                <Grid container justify='center' item xs={12} spacing={1}>
                     <FormRow />
                 </Grid>
             </Grid>

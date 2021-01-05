@@ -1,3 +1,7 @@
-.books-list {
-    margin: 5%;
+.books-list-container {
+    flex-grow: 1;
+}
+
+.books-list-title {
+    color: white;
 }

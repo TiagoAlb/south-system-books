@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import BooksList from '../../components/BooksList'
 import Header from '../../components/Header'
 import Outdoor from '../../components/Outdoor'
+import './style.css'
 
 export default () => {
     const [transparentHeader, setTransparentHeader] = useState(false);
@@ -27,7 +28,7 @@ export default () => {
         <div className='content'>
             <Header white={transparentHeader} />
             <Outdoor />
-            <main>
+            <main className='default-main'>
                 <BooksList />
             </main>
         </div>

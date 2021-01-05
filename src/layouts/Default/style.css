@@ -1,0 +1,6 @@
+.default-main {
+    position: absolute;
+    z-index: 3;
+    top: 70vh;
+    margin: 5%;
+}
