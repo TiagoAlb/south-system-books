@@ -7,11 +7,11 @@ import './style.css'
 
 export default () => {
     const [transparentHeader, setTransparentHeader] = useState(false);
+    const [reducedLogo, setReducedLogo] = useState(window.innerWidth < 500 ? true : false);
 
     useEffect(() => {
         const scrollListener = () => {
             if (window.scrollY > 10) {
-                console.log('altera para branco')
                 setTransparentHeader(true);
             } else {
                 setTransparentHeader(false);
@@ -25,9 +25,25 @@ export default () => {
         }
     }, []);
 
+    useEffect(() => {
+        const sizeListener = () => {
+            if (window.innerWidth < 500) {
+                setReducedLogo(true);
+            } else {
+                setReducedLogo(false);
+            }
+        }
+
+        window.addEventListener('resize', sizeListener);
+
+        return () => {
+            window.removeEventListener('resize', sizeListener);
+        }
+    }, []);
+
     return (
         <div className='content'>
-            <Header white={transparentHeader} />
+            <Header white={transparentHeader} reducedLogo={reducedLogo} />
             <Outdoor />
             <main className='default-main'>
                 <Switch>

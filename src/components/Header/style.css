@@ -54,3 +54,9 @@ header.white .header-links-li a {
 header.white .header-links-li a:hover, .header-links-li a:hover {
     color: #fc4f00;
 }
+
+@media screen and (min-width: 100px) and (max-width: 400px) {
+    .header-logo {
+        height: 35px;    
+    }
+}

@@ -3,11 +3,13 @@ import { NavLink } from 'react-router-dom'
 import routes from '../../routes';
 import './style.css';
 
-export default ({ white }) => {
+export default ({ white, reducedLogo }) => {
     return (
         <header className={white ? 'white' : ''}>
-            <div className="header-logo">
-                <img src="https://www.pucrs.br/wp-content/themes/pucrs-responsivo/hotsites/tecnopuc-experience/img/logo-southsystem.png" />
+            <div className='header-logo'>
+                {reducedLogo ?
+                    <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlnekSnuBNoPRRYQVO3AtWtk1D_zPsQWICAw&usqp=CAU' />
+                    : <img src='https://www.pucrs.br/wp-content/themes/pucrs-responsivo/hotsites/tecnopuc-experience/img/logo-southsystem.png' />}
             </div>
             <ul className='header-links'>
                 {routes.map((prop, key) => (
