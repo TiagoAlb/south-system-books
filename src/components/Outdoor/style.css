@@ -4,3 +4,9 @@
     background-position: center;
     background-image: url('https://img.jakpost.net/c/2019/03/02/2019_03_02_66706_1551461528._large.jpg');
 }
+
+.bottom-gradient{
+    width: inherit;
+    height: inherit;
+    background: linear-gradient(180deg, rgba(255,255,255,0) 70%, rgba(66,66,67,1) 100%);
+}

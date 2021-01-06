@@ -6,7 +6,7 @@ export default class Rest {
         this.url = url
     }
 
-    get(id, success, error) {
+    async get(id, success, error) {
         api.get(`${this.url}/${id}`)
             .then(res => {
                 if (res.status === 200) {
@@ -19,7 +19,7 @@ export default class Rest {
             })
     }
 
-    list(success, error) {
+    async list(success, error) {
         api.get(`${this.url}`)
             .then(res => {
                 if (res.status === 200) {

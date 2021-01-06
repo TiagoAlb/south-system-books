@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom'
+import routes from '../../routes';
 import './style.css';
 
 export default ({ white }) => {
@@ -9,9 +10,9 @@ export default ({ white }) => {
                 <img src="https://www.pucrs.br/wp-content/themes/pucrs-responsivo/hotsites/tecnopuc-experience/img/logo-southsystem.png" />
             </div>
             <ul className='header-links'>
-                <li className='header-links-li'><NavLink to='#'>Início</NavLink></li>
-                <li className='header-links-li'><NavLink to='#'>Favoritos</NavLink></li>
-                <li className='header-links-li'><NavLink to='#'>Recentes</NavLink></li>
+                {routes.map((prop, key) => (
+                    <li className='header-links-li'><NavLink to={prop.path}>{prop.name}</NavLink></li>
+                ))}
             </ul>
         </header>
     )
