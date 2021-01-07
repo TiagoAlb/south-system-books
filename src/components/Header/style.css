@@ -1,4 +1,4 @@
-header{
+header {
     position: fixed;
     z-index: 999;
     top: 0px;
@@ -12,6 +12,7 @@ header{
     background: transparent;
     transition:  all ease 0.5s;
 }
+
 header.white {
     background:white;
 }
@@ -37,8 +38,9 @@ header.white .header-links-li a {
     border-radius: 3px;
 }
 
-.header-links {
+.header-options, .header-links {
     display: flex;
+    justify-content: center;
 }
 
 .header-links-li {
