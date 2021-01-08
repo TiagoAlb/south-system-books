@@ -1,0 +1,88 @@
+.expandable-search {
+    display: flex;
+    background-color: white;
+    opacity: 0.5;
+    border-radius: 5px;
+    padding-left: 20px;
+}
+
+.expandable-search-input.white {
+    background-color: rgb(233, 233, 233);
+}
+
+.white {
+    background-color: rgb(233, 233, 233);
+}
+
+.expandable-search:hover {
+    opacity: 0.7;
+}
+
+.expandable-search:hover > .expandable-search-input {
+    width: 340px;
+    padding: 0 6px;
+}
+
+.expandable-search:hover > .expandable-search-button.white {
+  color : #1a1b1b;
+}
+
+.expandable-search:hover > .expandable-search-button {
+  color : #2f3640;
+}
+
+.expandable-search-button {
+    background-color: transparent;
+    color: white;
+    float: right;
+    width: 60px;
+    border-radius: 50%;
+    background-color: #2f3640;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+}
+
+.expandable-search-input {
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    color: black;
+    font-size: 16px;
+    transition: 0.4s;
+    width: 240px;
+}
+
+.MuiSvgIcon-root.expandable-search-icon {
+    font-size: 1.8rem;
+}
+
+@media screen and (max-width: 620px) {
+    .expandable-search {
+        background-color: transparent;
+        padding: 0;
+    }
+
+    .expandable-search-button {
+        width: 0;
+    }
+
+    .expandable-search:hover {
+        background-color: white;
+        margin-left: 20px;
+        padding-left: 20px;
+    }
+
+    .expandable-search-input {
+        background-color: transparent;
+        opacity: 1;
+        width: 0;
+    }
+
+    .expandable-search:hover > .expandable-search-input {
+        width: 150px;
+        padding: 0 6px;
+    }
+}
