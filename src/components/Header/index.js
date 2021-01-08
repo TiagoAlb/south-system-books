@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 import { NavLink } from 'react-router-dom'
-import routes from '../../routes';
-import SearchInput from '../SearchInput';
-import './style.css';
+import routes from '../../routes'
+import SearchInput from '../SearchInput'
+import './style.css'
 
 export default ({ white, reducedLogo }) => {
     return (
@@ -18,7 +18,6 @@ export default ({ white, reducedLogo }) => {
                     <li className='header-links-li'><NavLink to={prop.path}>{prop.name}</NavLink></li>
                 ))}
             </ul>
-
         </header>
     )
 }

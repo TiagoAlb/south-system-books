@@ -33,7 +33,7 @@ export default ({ items }) => {
     return (
         <section className='books-list'>
             <h3 className='books-list-title'>Livros</h3>
-            <Grid container spacing={1} className="books-list-container">
+            <Grid container spacing={1} className='books-list-container'>
                 {items ?
                     items.map((prop, key) => (
                         prop.volumeInfo.imageLinks ?

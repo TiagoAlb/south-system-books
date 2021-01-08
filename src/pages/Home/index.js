@@ -17,7 +17,7 @@ export default () => {
     useEffect(() => {
         (async () => {
             listBooks()
-        })();
+        })()
     }, [])
     return <BooksList items={books} />
 }
