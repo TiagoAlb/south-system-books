@@ -3,7 +3,7 @@ import './style.css'
 
 export default () => {
     return (
-        <section id="outdoor">
+        <section id='outdoor'>
             <div className='bottom-gradient' />
         </section>
     )
