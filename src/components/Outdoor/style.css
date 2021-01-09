@@ -8,5 +8,5 @@
 .bottom-gradient{
     width: inherit;
     height: inherit;
-    background: linear-gradient(180deg, rgba(255,255,255,0) 45%, rgba(26,26,26,1) 100%);
+    background: linear-gradient(180deg, rgba(255,255,255,0) 45%, rgba(19,19,19,1) 100%);
 }

@@ -5,7 +5,7 @@ const INITIAL_STATE = {
 }
 
 const reducer = (state = INITIAL_STATE, action) => {
-    if (action.type === 'CHANGE_SEARCH') {
+    if (action.type === 'CHANGE_SEARCH' && action.search !== '') {
         return {
             ...state,
             search: action.search

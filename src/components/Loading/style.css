@@ -1,0 +1,23 @@
+.loading {
+    text-align: center;
+    width: 100%;
+}
+
+.loading span {
+    width:40px;
+    height: 10px;
+    background-color: gray;
+    margin: 3px;
+}
+
+.loading-items {
+    display: flex;
+    width: fit-content;
+    margin: 5% auto;
+}
+
+@media screen and (max-width: 620px) {
+    .loading span {
+        width: 20px;
+    }
+}
