@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as Actions from '../../store/actions'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '../IconButton'
 import Card from '../Card'
@@ -8,7 +10,7 @@ import { findLink } from '../../utils/api_helper'
 import { book_informations_menu } from '../../lists/options'
 import './style.css'
 
-const BookInformation = ({ informations }) => {
+const BookInformation = ({ informations, changeSelectedBook }) => {
     return (
         <div className='book-information-content'>
             {informations ?
@@ -35,7 +37,25 @@ const BookInformation = ({ informations }) => {
                                             click={() => openNewTab(link)}
                                         />
                                     )
-                                } else return ''
+                                } else if (prop.name === 'close') {
+                                    return (
+                                        <IconButton
+                                            key={key}
+                                            icon={prop.icon}
+                                            title={prop.title}
+                                            click={() => changeSelectedBook(null)}
+                                        />
+                                    )
+                                } else if (prop.name === 'favorite') {
+                                    return (
+                                        <IconButton
+                                            key={key}
+                                            icon={prop.icon}
+                                            title={prop.title}
+                                            click={() => changeSelectedBook(null)}
+                                        />
+                                    )
+                                }
                             })}
                         </div>
                     </div>
@@ -49,4 +69,7 @@ const mapStateToProps = state => ({
     informations: state.book.informations
 })
 
-export default connect(mapStateToProps)(BookInformation)
+const mapDispatchToProps = dispatch =>
+    bindActionCreators(Actions, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(BookInformation)

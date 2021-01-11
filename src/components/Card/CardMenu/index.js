@@ -9,6 +9,8 @@ import { toNonEmptyValue } from '../../../utils/web_functions'
 import { card_menu } from '../../../lists/options'
 import './style.css'
 
+const executeScroll = () => window.scrollTo({ top: 0, behavior: 'smooth' })
+
 const CardMenu = ({ item, changeSelectedBook }) => {
     function Options() {
         return (
@@ -18,7 +20,7 @@ const CardMenu = ({ item, changeSelectedBook }) => {
                         key={key}
                         icon={prop.icon}
                         title={prop.title}
-                        click={() => changeSelectedBook(item)} />
+                        click={() => (changeSelectedBook(item), executeScroll())} />
                 ))}
             </div>
         )
@@ -43,7 +45,7 @@ const CardMenu = ({ item, changeSelectedBook }) => {
 }
 
 const mapStateToProps = state => ({
-    search: state.book.informations
+    informations: state.book.informations
 })
 
 const mapDispatchToProps = dispatch =>

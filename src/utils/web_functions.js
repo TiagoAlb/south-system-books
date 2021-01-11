@@ -14,6 +14,9 @@ export function toNonEmptyValue(value, message) {
 }
 
 export function decreaseText(value, length) {
+    if (!value) {
+        return 'Não informado.'
+    }
     if (value.length > length - 3)
         return value.substring(0, length - 3) + '...'
 

@@ -1,5 +1,5 @@
 const INITIAL_STATE = {
-    book: {}
+    book: null
 }
 
 export default function book(state = INITIAL_STATE, action) {
