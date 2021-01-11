@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography'
 import IconButton from '../IconButton'
 import Card from '../Card'
 import { openNewTab, decreaseText } from '../../utils/web_functions'
-import { findLink } from '../../utils/api_helper'
+import { findLink, saveFavorite } from '../../utils/api_helper'
 import { book_informations_menu } from '../../lists/options'
 import './style.css'
 
@@ -52,7 +52,7 @@ const BookInformation = ({ informations, changeSelectedBook }) => {
                                             key={key}
                                             icon={prop.icon}
                                             title={prop.title}
-                                            click={() => changeSelectedBook(null)}
+                                            click={() => (saveFavorite(informations.id), alert('Livro adicionado aos favoritos.'))}
                                         />
                                     )
                                 }
@@ -60,7 +60,11 @@ const BookInformation = ({ informations, changeSelectedBook }) => {
                         </div>
                     </div>
                 </Fragment>
-                : ''}
+                :
+                <p className='frase'>
+                    “Livros dão alma ao universo, asas para a mente, voo para a imaginação, e vida a tudo”. <br /><br /> – Platão
+                </p>
+            }
         </div>
     )
 }

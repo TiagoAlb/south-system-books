@@ -7,6 +7,7 @@ import IconButton from '../../IconButton'
 import { formatDate } from '../../../utils/date_time_functions'
 import { toNonEmptyValue } from '../../../utils/web_functions'
 import { card_menu } from '../../../lists/options'
+import { saveFavorite } from '../../../utils/api_helper'
 import './style.css'
 
 const executeScroll = () => window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -15,13 +16,23 @@ const CardMenu = ({ item, changeSelectedBook }) => {
     function Options() {
         return (
             <div className='card-menu-content-options'>
-                {card_menu.map((prop, key) => (
-                    <IconButton
-                        key={key}
-                        icon={prop.icon}
-                        title={prop.title}
-                        click={() => (changeSelectedBook(item), executeScroll())} />
-                ))}
+                {card_menu.map((prop, key) => {
+                    if (prop.name !== 'favorite') {
+                        return (
+                            <IconButton
+                                key={key}
+                                icon={prop.icon}
+                                title={prop.title}
+                                click={() => (changeSelectedBook(item), executeScroll())} />
+                        )
+                    } else return (
+                        <IconButton
+                            key={key}
+                            icon={prop.icon}
+                            title={prop.title}
+                            click={() => (saveFavorite(item.id), alert('Livro adicionado aos favoritos.'))} />
+                    )
+                })}
             </div>
         )
     }

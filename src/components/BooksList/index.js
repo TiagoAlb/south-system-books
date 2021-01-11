@@ -47,7 +47,7 @@ export default (props) => {
                 >
                     <Grid container spacing={1}>
                         {items.map((prop, key) => (
-                            prop.volumeInfo.imageLinks && prop.volumeInfo.description ?
+                            prop.volumeInfo && prop.volumeInfo.imageLinks && prop.volumeInfo.description ?
                                 <Grid item md={2} sm={3} xs={12} key={key}>
                                     <Card item={prop} />
                                 </Grid>
