@@ -1,4 +1,5 @@
 import api from './Api'
+import { cleanUrlSearch } from '../utils/web_functions'
 
 export async function get(id, success, error) {
     api.get(`/${id}`)
@@ -28,7 +29,10 @@ export async function list(search, success, error) {
 }
 
 export async function pagedList(search, page, success, error) {
-    const searchValue = search !== '' ? search : 'stephen+king'
+    console.log('vai pesquisar')
+    const searchValue = search !== '' ? cleanUrlSearch(search) : 'stephen+king'
+    console.log(search)
+    console.log(cleanUrlSearch(search))
     api.get(`/volumes?q=${searchValue}&key=AIzaSyB3yxi_GM2cLQ8xk5GdyPQSScccXCBWP7A&startIndex=${page}&maxResults=13`)
         .then(res => {
             if (res.status === 200) {

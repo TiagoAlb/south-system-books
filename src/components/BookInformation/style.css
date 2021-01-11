@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400&family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300&display=swap');
+
+.book-information-content {
+    display: grid;
+    grid-template-areas: "card informations";
+    color: white;
+    max-width: 100%;
+    margin: 20vh 0 10vh;
+    gap: 150px;
+}
+
+.book-information-content-card {
+    width: 200px;
+    margin: 0 auto;
+    grid-area: card;
+}
+
+.book-information-content-details {
+    min-width: 300px;
+    text-align: justify;
+    grid-area: informations;
+    opacity: 0.98;
+    margin: 30px 0;
+}
+
+.book-information-content-details h6, p {
+    font-family: 'Roboto', sans-serif;
+}
+
+.book-information-content-details h6 {
+    margin-bottom: 20px;
+}
+
+.book-information-content-details p {
+    font-weight: 300;
+}
+
+@media screen and (max-width: 620px) {
+    .book-information-content {
+        grid-template-areas: 
+        "card"
+        "informations";
+    }
+}

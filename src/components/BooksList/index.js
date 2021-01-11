@@ -29,7 +29,7 @@ export default (props) => {
 
     return (
         <section className='books-list'>
-            <h3 className='books-list-title'>{props.title ?
+            <h3 id="title" className='books-list-title'>{props.title ?
                 `${props.loading ? 'Pesquisando resultados ' : 'Resultados'} 
                     para "${props.title}"` : 'Livros'}</h3>
             {!props.loading ?

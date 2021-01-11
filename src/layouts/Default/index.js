@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Provider } from 'react-redux'
 import { Switch, Redirect, Route } from 'react-router-dom'
+import BookInformation from '../../components/BookInformation'
 import Header from '../../components/Header'
 import Outdoor from '../../components/Outdoor'
 import routes from '../../routes'
@@ -49,6 +50,7 @@ export default () => {
                 <Header white={transparentHeader} reducedLogo={reducedLogo} />
                 <Outdoor />
                 <main className='default-main'>
+                    <BookInformation />
                     <Switch>
                         {routes.map((prop, key) => {
                             if (prop.redirect)

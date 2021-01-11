@@ -6,7 +6,7 @@ import './style.css'
 function Items() {
     let items = [];
     for (var i = 0; i < 10; i++) {
-        items.push(<Skeleton />)
+        items.push(<Skeleton key={i} />)
     }
 
     return items
