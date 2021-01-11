@@ -1,8 +1,15 @@
 import { cleanSearchSpaces } from '../../utils/web_functions'
 
-export function changeSearch(search) {
+export function changeSearch(value) {
     return {
         type: 'CHANGE_SEARCH',
-        search: cleanSearchSpaces(search)
+        search: cleanSearchSpaces(value)
+    }
+}
+
+export function changeSelectedBook(value) {
+    return {
+        type: 'CHANGE_SELECTED_BOOK',
+        informations: value
     }
 }

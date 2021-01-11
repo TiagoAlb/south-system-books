@@ -28,7 +28,7 @@ const Home = ({ search }) => {
     }, [loading]);
 
     useEffect(() => {
-        //listBooks()
+        listBooks()
     }, [page])
 
 
@@ -37,8 +37,8 @@ const Home = ({ search }) => {
 
         if (page > 0)
             setPage(0)
-        //else
-        //listBooks()
+        else
+            listBooks()
     }, [search])
 
     return (

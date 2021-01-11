@@ -1,29 +1,29 @@
-import React, { Fragment } from 'react'
+import React from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as Actions from '../../../store/actions'
 import Typography from '@material-ui/core/Typography'
-import IconButton from '@material-ui/core/IconButton'
-import Tooltip from '../../Tooltip'
+import IconButton from '../../IconButton'
 import { formatDate } from '../../../utils/date_time_functions'
 import { toNonEmptyValue } from '../../../utils/web_functions'
 import { card_menu } from '../../../lists/options'
 import './style.css'
 
-function Options() {
-    return (
-        <div className='card-menu-content-options'>
-            {card_menu.map((prop, key) => (
-                <Fragment key={key}>
-                    <Tooltip text={prop.hover}>
-                        <IconButton>
-                            {prop.icon}
-                        </IconButton>
-                    </Tooltip>
-                </Fragment>
-            ))}
-        </div>
-    )
-}
+const CardMenu = ({ item, changeSelectedBook }) => {
+    function Options() {
+        return (
+            <div className='card-menu-content-options'>
+                {card_menu.map((prop, key) => (
+                    <IconButton
+                        key={key}
+                        icon={prop.icon}
+                        title={prop.title}
+                        click={() => changeSelectedBook(item)} />
+                ))}
+            </div>
+        )
+    }
 
-export default ({ item }) => {
     return (
         <div className='card-menu'>
             <div className='card-menu-content'>
@@ -41,3 +41,12 @@ export default ({ item }) => {
         </div>
     )
 }
+
+const mapStateToProps = state => ({
+    search: state.book.informations
+})
+
+const mapDispatchToProps = dispatch =>
+    bindActionCreators(Actions, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardMenu)

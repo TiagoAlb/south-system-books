@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as Actions from '../../store/actions'
+import { cleanSearchSpaces } from '../../utils/web_functions'
 import IconButton from '@material-ui/core/IconButton'
 import SearchIcon from '@material-ui/icons/Search'
 import './style.css'
-import { cleanSearchSpaces } from '../../utils/web_functions'
 
 const SearchInput = ({ white, changeSearch }) => {
     const [searchValue, setSearchValue] = useState('')

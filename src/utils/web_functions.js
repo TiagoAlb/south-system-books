@@ -19,3 +19,7 @@ export function decreaseText(value, length) {
 
     return value
 }
+
+export function openNewTab(link) {
+    window.open(link, '_blank');
+}

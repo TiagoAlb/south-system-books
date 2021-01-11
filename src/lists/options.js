@@ -1,7 +1,12 @@
-import Favorite from '@material-ui/icons/Favorite'
-import More from '@material-ui/icons/Add'
-
 export const card_menu = [
-    { name: 'informations', hover: 'Mais informações', icon: <More /> },
-    { name: 'favorite', hover: 'Adicionar aos favoritos', icon: <Favorite /> }
+    { name: 'informations', title: 'Mais informações', icon: 'add_outlined' },
+    { name: 'favorite', title: 'Adicionar aos favoritos', icon: 'favorite_border_outlined' }
 ]
+
+export const book_informations_menu = [
+    { name: 'informations', title: 'Mais informações', icon: 'add_outlined' },
+    { name: 'favorite', title: 'Adicionar aos favoritos', icon: 'favorite_border_outlined' },
+    { name: 'read', title: 'Ler online', icon: 'import_contacts' },
+    { name: 'buy', title: 'Comprar online', icon: 'shopping_cart' }
+]
+
