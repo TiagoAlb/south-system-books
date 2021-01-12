@@ -6,7 +6,6 @@ import BooksList from '../../components/BooksList'
 
 const Favorites = ({ search }) => {
     const [books, setBooks] = useState([])
-    const [page, setPage] = useState(0)
     const [loading, setLoading] = useState(false)
     const [totalItems, setTotalItems] = useState(true)
     const list = useRef(null)
@@ -14,18 +13,21 @@ const Favorites = ({ search }) => {
     const executeScroll = () => list.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'center' })
 
     const listBooks = () => {
-        let favorites = getFavorite()
+        const favorites = getFavorite()
+        let items = []
+
 
         for (let i = 0; i < favorites.length; i++) {
-            get(favorites[i],
+            get(favorites[i].id,
                 (success) => {
-                    favorites.push(success)
+                    setTotalItems(items.push(success))
+                    setBooks(items)
+                    console.log(items)
+
                 })
         }
-
+        console.log('para loading')
         setLoading(false)
-        setBooks(favorites)
-        setTotalItems(favorites.length)
     }
 
     useEffect(() => {
@@ -34,16 +36,10 @@ const Favorites = ({ search }) => {
     }, [loading]);
 
     useEffect(() => {
-        listBooks()
-    }, [page])
-
-    useEffect(() => {
         setLoading(true)
-
-        if (page > 0)
-            setPage(0)
-        else
-            listBooks()
+        setTotalItems(0)
+        setBooks([])
+        listBooks()
     }, [search])
 
     return (
@@ -51,9 +47,8 @@ const Favorites = ({ search }) => {
             <BooksList
                 title=''
                 items={books}
-                page={page}
+                page={0}
                 loading={loading}
-                nextPage={() => setPage(page + 1)}
                 total={totalItems}
             />
         </div>

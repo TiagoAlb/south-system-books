@@ -52,7 +52,7 @@ const BookInformation = ({ informations, changeSelectedBook }) => {
                                             key={key}
                                             icon={prop.icon}
                                             title={prop.title}
-                                            click={() => (saveFavorite(informations.id), alert('Livro adicionado aos favoritos.'))}
+                                            click={() => (saveFavorite(informations.id, informations.volumeInfo.title), alert('Livro adicionado aos favoritos.'))}
                                         />
                                     )
                                 }

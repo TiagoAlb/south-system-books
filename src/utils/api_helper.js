@@ -11,18 +11,19 @@ export function findLink(item, option) {
     }
 }
 
-export function saveFavorite(id) {
+export function saveFavorite(id, title) {
     const favorites = localStorage.getItem('south-system-books-favorites')
+    const book = { id: id, title: title }
 
     if (favorites) {
         const arr = JSON.parse(favorites)
 
-        if (!arr.includes(id)) {
-            arr.push(id)
+        if (!verifyIfObjectExists(arr, book)) {
+            arr.push(book)
         }
         localStorage.setItem('south-system-books-favorites', JSON.stringify(arr))
     } else {
-        localStorage.setItem('south-system-books-favorites', JSON.stringify([id]))
+        localStorage.setItem('south-system-books-favorites', JSON.stringify([book]))
     }
 }
 
@@ -34,4 +35,13 @@ export function getFavorite() {
     }
 
     return []
+}
+
+export function verifyIfObjectExists(items, obj) {
+    for (let i = 0; i < items.length; i++) {
+        if (items[i].id === obj.id)
+            return true
+    }
+
+    return false
 }

@@ -30,7 +30,7 @@ const CardMenu = ({ item, changeSelectedBook }) => {
                             key={key}
                             icon={prop.icon}
                             title={prop.title}
-                            click={() => (saveFavorite(item.id), alert('Livro adicionado aos favoritos.'))} />
+                            click={() => (saveFavorite(item.id, item.volumeInfo.title), alert('Livro adicionado aos favoritos.'))} />
                     )
                 })}
             </div>

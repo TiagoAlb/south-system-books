@@ -20,12 +20,12 @@ export default (props) => {
     }, [props.items])
 
     useEffect(() => {
-        if (props.total > items.length) {
+        if (props.total > props.items.length) {
             setHasMore(true)
         } else {
             setHasMore(false)
         }
-    }, [props.total])
+    }, [props.items])
 
     return (
         <section className='books-list'>
@@ -40,8 +40,8 @@ export default (props) => {
                     loader={<Loading />}
                     style={{ overflow: 'inherit' }}
                     endMessage={
-                        <p>
-                            {`${props.total} resultados carregados.`}
+                        <p style={{ color: 'white' }}>
+                            {`${props.total === 0 ? 'Nenhum livro encontrado.' : ''}`}
                         </p>
                     }
                 >
