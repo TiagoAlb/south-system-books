@@ -20,34 +20,35 @@ export default (props) => {
     }, [props.items])
 
     useEffect(() => {
-        if (props.total > items.length) {
+        if (props.total > props.items.length) {
             setHasMore(true)
         } else {
             setHasMore(false)
         }
-    }, [props.total])
+    }, [props.items])
 
     return (
         <section className='books-list'>
-            <h3 className='books-list-title'>{props.title ?
+            <h3 id="title" className='books-list-title'>{props.title ?
                 `${props.loading ? 'Pesquisando resultados ' : 'Resultados'} 
-                    para "${props.title}"` : 'Livros'}</h3>
+                    para "${props.title}"` : props.menu ? props.menu : 'Livros'}</h3>
             {!props.loading ?
                 <InfiniteScroll
                     dataLength={items.length}
                     next={props.nextPage}
                     hasMore={hasMore}
                     loader={<Loading />}
+                    className='infinite-scroll'
                     style={{ overflow: 'inherit' }}
                     endMessage={
                         <p>
-                            {`${props.total} resultados carregados.`}
+                            {`${props.total === 0 ? 'Nenhum livro encontrado.' : ''}`}
                         </p>
                     }
                 >
                     <Grid container spacing={1}>
                         {items.map((prop, key) => (
-                            prop.volumeInfo.imageLinks ?
+                            prop.volumeInfo && prop.volumeInfo.imageLinks && prop.volumeInfo.description ?
                                 <Grid item md={2} sm={3} xs={12} key={key}>
                                     <Card item={prop} />
                                 </Grid>

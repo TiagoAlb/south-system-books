@@ -1,7 +1,8 @@
 import api from './Api'
+import { cleanUrlSearch } from '../utils/web_functions'
 
 export async function get(id, success, error) {
-    api.get(`/${id}`)
+    api.get(`https://www.googleapis.com/books/v1/volumes/${id}`)
         .then(res => {
             if (res.status === 200) {
                 success(res.data)
@@ -15,7 +16,7 @@ export async function get(id, success, error) {
 
 export async function list(search, success, error) {
     const searchValue = search !== '' ? search : 'design'
-    api.get(`/volumes?q=${searchValue}&key=AIzaSyB3yxi_GM2cLQ8xk5GdyPQSScccXCBWP7A`)
+    api.get(`/volumes?q=${searchValue}A`)
         .then(res => {
             if (res.status === 200) {
                 success(res.data)
@@ -28,8 +29,8 @@ export async function list(search, success, error) {
 }
 
 export async function pagedList(search, page, success, error) {
-    const searchValue = search !== '' ? search : 'stephen+king'
-    api.get(`/volumes?q=${searchValue}&key=AIzaSyB3yxi_GM2cLQ8xk5GdyPQSScccXCBWP7A&startIndex=${page}&maxResults=13`)
+    const searchValue = search !== '' ? cleanUrlSearch(search) : 'stephen+king'
+    api.get(`/volumes?q=${searchValue}&filter=partial&startIndex=${page}&maxResults=13`)
         .then(res => {
             if (res.status === 200) {
                 success(res.data)

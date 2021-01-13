@@ -10,3 +10,74 @@
     height: inherit;
     background: linear-gradient(180deg, rgba(255,255,255,0) 45%, rgba(19,19,19,1) 100%);
 }
+
+.vertical-gradient {
+    width: inherit;
+    height: inherit;
+    opacity: 0.95;
+    
+    -webkit-animation: fadeInFromNone 0.5s ease-out;
+    -moz-animation: fadeInFromNone 0.5s ease-out;
+    -o-animation: fadeInFromNone 0.5s ease-out;
+    animation: fadeInFromNone 0.5s ease-out;
+
+    background: rgb(19,19,19);
+    background: linear-gradient(304deg, rgba(19,19,19,1) 47%, rgba(19,19,19,0.7259278711484594) 69%, rgba(255,255,255,0) 100%);
+}
+
+@-webkit-keyframes fadeInFromNone {
+    0% {
+        opacity: 0;
+    }
+
+    1% {
+        opacity: 0;
+    }
+
+    100% {
+        display: block;
+        opacity: 0.95;
+    }
+}
+
+@-moz-keyframes fadeInFromNone {
+    0% {
+        opacity: 0;
+    }
+
+    1% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0.95;
+    }
+}
+
+@-o-keyframes fadeInFromNone {
+    0% {
+        opacity: 0;
+    }
+
+    1% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0.95;
+    }
+}
+
+@keyframes fadeInFromNone {
+    0% {
+        opacity: 0;
+    }
+
+    1% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0.95;
+    }
+}

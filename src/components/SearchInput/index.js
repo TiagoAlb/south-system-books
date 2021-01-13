@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import * as Actions from '../../store/actions'
+import { mapStateToProps, mapDispatchToProps } from '../../store/functions/header'
+import { cleanSearchSpaces } from '../../utils/web_functions'
 import IconButton from '@material-ui/core/IconButton'
 import SearchIcon from '@material-ui/icons/Search'
 import './style.css'
@@ -19,31 +19,24 @@ const SearchInput = ({ white, changeSearch }) => {
         <div className={'expandable-search ' + (white ? 'white' : '')}>
             <input
                 className={'expandable-search-input ' + (white ? 'white' : '')}
-                type="search"
-                onChange={(e) => setSearchValue(e.target.value)}
+                type='search'
+                onChange={(e) => setSearchValue(cleanSearchSpaces(e.target.value))}
                 onKeyUp={(e) => keyPress(e)}
-                placeholder="Pesquisar"
+                placeholder='Pesquisar'
                 value={searchValue}
             />
             <IconButton
-                aria-label="search"
+                aria-label='search'
                 className={'expandable-search-button ' + (white ? 'white' : '')}
                 onClick={() => changeSearch(searchValue)}
             >
                 <SearchIcon
-                    fontSize="medium"
+                    fontSize='medium'
                     className='expandable-search-icon'
                 />
             </IconButton>
         </div>
     )
 }
-
-const mapStateToProps = state => ({
-    search: state.search
-})
-
-const mapDispatchToProps = dispatch =>
-    bindActionCreators(Actions, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchInput)

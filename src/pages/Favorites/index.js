@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { mapStateToProps, mapDispatchToProps } from '../../store/functions'
 import { connect } from 'react-redux'
-import { pagedList } from '../../services/Rest'
+import { mapStateToProps, mapDispatchToProps } from '../../store/functions'
+import { get } from '../../services/Rest'
+import { getFavorites, filterArray } from '../../utils/api_helper'
 import BooksList from '../../components/BooksList'
 
-const Home = ({ search, actions }) => {
+const Favorites = ({ search, actions }) => {
     const [books, setBooks] = useState([])
-    const [page, setPage] = useState(0)
     const [loading, setLoading] = useState(false)
     const [totalItems, setTotalItems] = useState(true)
     const list = useRef(null)
@@ -14,12 +14,17 @@ const Home = ({ search, actions }) => {
     const executeScroll = () => list.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'center' })
 
     const listBooks = () => {
-        pagedList(search, page,
-            (success) => {
-                setLoading(false)
-                setBooks(success.items)
-                setTotalItems(success.totalItems)
-            })
+        const favorites = search !== '' ? filterArray(getFavorites(), search) : getFavorites()
+        let items = []
+
+        for (let i = 0; i < favorites.length; i++) {
+            get(favorites[i].id,
+                (success) => {
+                    setTotalItems(items.push(success))
+                    setBooks(items)
+                })
+        }
+        setLoading(false)
     }
 
     useEffect(() => {
@@ -28,36 +33,29 @@ const Home = ({ search, actions }) => {
     }, [])
 
     useEffect(() => {
-        if (loading && search !== '')
+        if (loading)
             executeScroll()
-    }, [loading]);
-
-    useEffect(() => {
-        listBooks()
-    }, [page])
-
+    }, [loading])
 
     useEffect(() => {
         setLoading(true)
-
-        if (page > 0)
-            setPage(0)
-        else
-            listBooks()
+        setTotalItems(0)
+        setBooks([])
+        listBooks()
     }, [search])
 
     return (
         <div ref={list}>
             <BooksList
                 title={search}
+                menu='Favoritos'
                 items={books}
-                page={page}
+                page={0}
                 loading={loading}
-                nextPage={() => setPage(page + 1)}
                 total={totalItems}
             />
         </div>
     )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(Favorites)
