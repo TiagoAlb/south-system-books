@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { mapStateToProps } from '../../store/functions/book'
 import './style.css'
 
 const Outdoor = ({ informations }) => {
@@ -12,9 +13,5 @@ const Outdoor = ({ informations }) => {
         </section>
     )
 }
-
-const mapStateToProps = state => ({
-    informations: state.book.informations
-})
 
 export default connect(mapStateToProps)(Outdoor)

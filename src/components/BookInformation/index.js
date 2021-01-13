@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import * as Actions from '../../store/actions'
+import { mapStateToProps, mapDispatchToProps } from '../../store/functions'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '../IconButton'
 import Card from '../Card'
@@ -10,7 +9,19 @@ import { findLink, saveFavorite } from '../../utils/api_helper'
 import { book_informations_menu } from '../../lists/options'
 import './style.css'
 
-const BookInformation = ({ informations, changeSelectedBook }) => {
+const BookInformation = ({ informations, mobile, actions }) => {
+    const Content = () => {
+        return (
+            <div className='book-information-content-details-content'>
+                <Typography variant='h6'>
+                    {informations.volumeInfo.title}
+                </Typography>
+                <Typography variant='body1'>
+                    {decreaseText(informations.volumeInfo.description, 500)}
+                </Typography>
+            </div>
+        )
+    }
     return (
         <div className='book-information-content'>
             {informations ?
@@ -19,12 +30,9 @@ const BookInformation = ({ informations, changeSelectedBook }) => {
                         <Card noMenu item={informations} />
                     </div>
                     <div className='book-information-content-details'>
-                        <Typography variant='h6'>
-                            {informations.volumeInfo.title}
-                        </Typography>
-                        <Typography variant='body1'>
-                            {decreaseText(informations.volumeInfo.description, 500)}
-                        </Typography>
+                        {!mobile ?
+                            <Content />
+                            : ''}
                         <div className='book-information-content-details-menu'>
                             {book_informations_menu.map((prop, key) => {
                                 const link = findLink(informations, prop.name)
@@ -43,7 +51,7 @@ const BookInformation = ({ informations, changeSelectedBook }) => {
                                             key={key}
                                             icon={prop.icon}
                                             title={prop.title}
-                                            click={() => changeSelectedBook(null)}
+                                            click={() => actions.changeSelectedBook(null)}
                                         />
                                     )
                                 } else if (prop.name === 'favorite') {
@@ -58,6 +66,9 @@ const BookInformation = ({ informations, changeSelectedBook }) => {
                                 }
                             })}
                         </div>
+                        {mobile ?
+                            <Content />
+                            : ''}
                     </div>
                 </Fragment>
                 :
@@ -68,12 +79,5 @@ const BookInformation = ({ informations, changeSelectedBook }) => {
         </div>
     )
 }
-
-const mapStateToProps = state => ({
-    informations: state.book.informations
-})
-
-const mapDispatchToProps = dispatch =>
-    bindActionCreators(Actions, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookInformation)

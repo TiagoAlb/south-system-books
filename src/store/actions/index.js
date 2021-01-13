@@ -13,3 +13,11 @@ export function changeSelectedBook(value) {
         informations: value
     }
 }
+
+export function changeDevice(value) {
+    return {
+        type: 'CHANGE_DEVICE',
+        mobile: value
+    }
+}
+

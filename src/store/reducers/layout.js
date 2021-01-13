@@ -1,12 +1,12 @@
 const INITIAL_STATE = {
-    search: ''
+    mobile: false
 }
 
 export default function (state = INITIAL_STATE, action) {
-    if (action.type === 'CHANGE_SEARCH') {
+    if (action.type === 'CHANGE_DEVICE') {
         return {
             ...state,
-            search: action.search
+            mobile: action.mobile
         }
     }
 

@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { connect } from 'react-redux'
-import { pagedList } from '../../services/Rest'
+import { mapStateToProps, mapDispatchToProps } from '../../store/functions'
+import { get } from '../../services/Rest'
+import { getRecents, filterArray } from '../../utils/api_helper'
 import BooksList from '../../components/BooksList'
 
-const Recents = ({ search }) => {
+const Recents = ({ search, actions }) => {
     const [books, setBooks] = useState([])
-    const [page, setPage] = useState(0)
     const [loading, setLoading] = useState(false)
     const [totalItems, setTotalItems] = useState(true)
     const list = useRef(null)
@@ -13,50 +14,48 @@ const Recents = ({ search }) => {
     const executeScroll = () => list.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'center' })
 
     const listBooks = () => {
+        const favorites = search !== '' ? filterArray(getRecents(), search) : getRecents()
+        let items = []
 
-        pagedList(search, page,
-            (success) => {
-                setLoading(false)
-                setBooks(success.items)
-                setTotalItems(success.totalItems)
-            })
+        for (let i = 0; i < favorites.length; i++) {
+            get(favorites[i].id,
+                (success) => {
+                    setTotalItems(items.push(success))
+                    setBooks(items)
+                })
+        }
+        setLoading(false)
     }
 
     useEffect(() => {
-        if (loading && search !== '')
-            executeScroll()
-    }, [loading]);
+        actions.changeSearch('')
+        actions.changeSelectedBook(null)
+    }, [])
 
     useEffect(() => {
-        listBooks()
-    }, [page])
-
+        if (loading)
+            executeScroll()
+    }, [loading])
 
     useEffect(() => {
         setLoading(true)
-
-        if (page > 0)
-            setPage(0)
-        else
-            listBooks()
+        setTotalItems(0)
+        setBooks([])
+        listBooks()
     }, [search])
 
     return (
         <div ref={list}>
             <BooksList
                 title={search}
+                menu='Recentes'
                 items={books}
-                page={page}
+                page={0}
                 loading={loading}
-                nextPage={() => setPage(page + 1)}
                 total={totalItems}
             />
         </div>
     )
 }
 
-const mapStateToProps = state => ({
-    search: state.header.search
-})
-
-export default connect(mapStateToProps)(Recents)
+export default connect(mapStateToProps, mapDispatchToProps)(Recents)

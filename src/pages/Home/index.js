@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { mapStateToProps, mapDispatchToProps } from '../../store/functions'
 import { connect } from 'react-redux'
 import { pagedList } from '../../services/Rest'
 import BooksList from '../../components/BooksList'
 
-const Home = ({ search }) => {
+const Home = ({ search, actions }) => {
     const [books, setBooks] = useState([])
     const [page, setPage] = useState(0)
     const [loading, setLoading] = useState(false)
@@ -21,6 +22,10 @@ const Home = ({ search }) => {
             })
     }
 
+    useEffect(() => {
+        actions.changeSearch('')
+        actions.changeSelectedBook(null)
+    }, [])
 
     useEffect(() => {
         if (loading && search !== '')
@@ -55,8 +60,4 @@ const Home = ({ search }) => {
     )
 }
 
-const mapStateToProps = state => ({
-    search: state.header.search
-})
-
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

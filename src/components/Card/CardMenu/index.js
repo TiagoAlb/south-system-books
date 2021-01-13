@@ -1,13 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import * as Actions from '../../../store/actions'
+import { mapStateToProps, mapDispatchToProps } from '../../../store/functions/book'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '../../IconButton'
 import { formatDate } from '../../../utils/date_time_functions'
-import { toNonEmptyValue } from '../../../utils/web_functions'
+import { toNonEmptyValue, decreaseText } from '../../../utils/web_functions'
 import { card_menu } from '../../../lists/options'
-import { saveFavorite } from '../../../utils/api_helper'
+import { saveFavorite, saveRecent } from '../../../utils/api_helper'
 import './style.css'
 
 const executeScroll = () => window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -23,7 +22,10 @@ const CardMenu = ({ item, changeSelectedBook }) => {
                                 key={key}
                                 icon={prop.icon}
                                 title={prop.title}
-                                click={() => (changeSelectedBook(item), executeScroll())} />
+                                click={() => (changeSelectedBook(item),
+                                    saveRecent(item.id, item.volumeInfo.title),
+                                    executeScroll())
+                                } />
                         )
                     } else return (
                         <IconButton
@@ -42,10 +44,10 @@ const CardMenu = ({ item, changeSelectedBook }) => {
             <div className='card-menu-content'>
                 <div className='card-menu-content-header'>
                     <Typography variant='subtitle2'>
-                        {item.volumeInfo.title}
+                        {decreaseText(item.volumeInfo.title, 50)}
                     </Typography>
                     <Typography variant='caption' gutterBottom>
-                        {toNonEmptyValue(item.volumeInfo.authors, 'Autor não informado') + ' - '}
+                        {decreaseText(toNonEmptyValue(item.volumeInfo.authors, 'Autor não informado'), 50) + ' - '}
                         {formatDate(item.volumeInfo.publishedDate, 'DD/MM/YYYY')}
                     </Typography>
                 </div>
@@ -54,12 +56,5 @@ const CardMenu = ({ item, changeSelectedBook }) => {
         </div>
     )
 }
-
-const mapStateToProps = state => ({
-    informations: state.book.informations
-})
-
-const mapDispatchToProps = dispatch =>
-    bindActionCreators(Actions, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardMenu)

@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { connect } from 'react-redux'
+import { mapStateToProps, mapDispatchToProps } from '../../store/functions'
 import { get } from '../../services/Rest'
-import { getFavorite } from '../../utils/api_helper'
+import { getFavorites, filterArray } from '../../utils/api_helper'
 import BooksList from '../../components/BooksList'
 
-const Favorites = ({ search }) => {
+const Favorites = ({ search, actions }) => {
     const [books, setBooks] = useState([])
     const [loading, setLoading] = useState(false)
     const [totalItems, setTotalItems] = useState(true)
@@ -13,27 +14,28 @@ const Favorites = ({ search }) => {
     const executeScroll = () => list.current.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'center' })
 
     const listBooks = () => {
-        const favorites = getFavorite()
+        const favorites = search !== '' ? filterArray(getFavorites(), search) : getFavorites()
         let items = []
-
 
         for (let i = 0; i < favorites.length; i++) {
             get(favorites[i].id,
                 (success) => {
                     setTotalItems(items.push(success))
                     setBooks(items)
-                    console.log(items)
-
                 })
         }
-        console.log('para loading')
         setLoading(false)
     }
 
     useEffect(() => {
-        if (loading && search !== '')
+        actions.changeSearch('')
+        actions.changeSelectedBook(null)
+    }, [])
+
+    useEffect(() => {
+        if (loading)
             executeScroll()
-    }, [loading]);
+    }, [loading])
 
     useEffect(() => {
         setLoading(true)
@@ -45,7 +47,8 @@ const Favorites = ({ search }) => {
     return (
         <div ref={list}>
             <BooksList
-                title=''
+                title={search}
+                menu='Favoritos'
                 items={books}
                 page={0}
                 loading={loading}
@@ -55,8 +58,4 @@ const Favorites = ({ search }) => {
     )
 }
 
-const mapStateToProps = state => ({
-    search: state.header.search
-})
-
-export default connect(mapStateToProps)(Favorites)
+export default connect(mapStateToProps, mapDispatchToProps)(Favorites)

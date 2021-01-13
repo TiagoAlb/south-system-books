@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import * as Actions from '../../store/actions'
+import { mapStateToProps, mapDispatchToProps } from '../../store/functions/header'
 import { cleanSearchSpaces } from '../../utils/web_functions'
 import IconButton from '@material-ui/core/IconButton'
 import SearchIcon from '@material-ui/icons/Search'
@@ -39,12 +38,5 @@ const SearchInput = ({ white, changeSearch }) => {
         </div>
     )
 }
-
-const mapStateToProps = state => ({
-    search: state.header.search
-})
-
-const mapDispatchToProps = dispatch =>
-    bindActionCreators(Actions, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchInput)

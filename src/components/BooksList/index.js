@@ -31,16 +31,17 @@ export default (props) => {
         <section className='books-list'>
             <h3 id="title" className='books-list-title'>{props.title ?
                 `${props.loading ? 'Pesquisando resultados ' : 'Resultados'} 
-                    para "${props.title}"` : 'Livros'}</h3>
+                    para "${props.title}"` : props.menu ? props.menu : 'Livros'}</h3>
             {!props.loading ?
                 <InfiniteScroll
                     dataLength={items.length}
                     next={props.nextPage}
                     hasMore={hasMore}
                     loader={<Loading />}
+                    className='infinite-scroll'
                     style={{ overflow: 'inherit' }}
                     endMessage={
-                        <p style={{ color: 'white' }}>
+                        <p>
                             {`${props.total === 0 ? 'Nenhum livro encontrado.' : ''}`}
                         </p>
                     }

@@ -27,11 +27,37 @@ export function saveFavorite(id, title) {
     }
 }
 
-export function getFavorite() {
+export function saveRecent(id, title) {
+    const recents = localStorage.getItem('south-system-books-recents')
+    const book = { id: id, title: title }
+
+    if (recents) {
+        const arr = JSON.parse(recents)
+
+        if (!verifyIfObjectExists(arr, book)) {
+            arr.push(book)
+        }
+        localStorage.setItem('south-system-books-recents', JSON.stringify(arr))
+    } else {
+        localStorage.setItem('south-system-books-recents', JSON.stringify([book]))
+    }
+}
+
+export function getFavorites() {
     const favorites = localStorage.getItem('south-system-books-favorites')
 
     if (favorites) {
         return JSON.parse(favorites)
+    }
+
+    return []
+}
+
+export function getRecents() {
+    const recents = localStorage.getItem('south-system-books-recents')
+
+    if (recents) {
+        return JSON.parse(recents)
     }
 
     return []
@@ -44,4 +70,14 @@ export function verifyIfObjectExists(items, obj) {
     }
 
     return false
+}
+
+export function filterArray(arr, filter) {
+    const newArray = arr.filter((obj) => (
+        obj.title.includes(filter)
+    ))
+
+    console.log('aqui array')
+    console.log(newArray)
+    return newArray
 }

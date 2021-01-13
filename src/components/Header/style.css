@@ -29,15 +29,6 @@ header.white .header-links-li a {
     height: 100%;
 }
 
-.header-user {
-    height: 35px;
-}
-
-.header-user img {
-    height: 100%;
-    border-radius: 3px;
-}
-
 .header-options, .header-links {
     display: flex;
     justify-content: center;
@@ -57,7 +48,7 @@ header.white .header-links-li a:hover, .header-links-li a:hover {
     color: #fc4f00;
 }
 
-@media screen and (min-width: 100px) and (max-width: 400px) {
+@media screen and (min-width: 100px) and (max-width: 600px) {
     .header-logo {
         height: 35px;    
     }
