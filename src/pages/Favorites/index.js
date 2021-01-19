@@ -6,6 +6,8 @@ import { getFavorites, filterArray } from '../../utils/api_helper'
 import BooksList from '../../components/BooksList'
 
 const Favorites = ({ search, actions }) => {
+    console.log('veio favoritos')
+
     const [books, setBooks] = useState([])
     const [loading, setLoading] = useState(false)
     const [totalItems, setTotalItems] = useState(true)
@@ -16,6 +18,10 @@ const Favorites = ({ search, actions }) => {
     const listBooks = () => {
         const favorites = search !== '' ? filterArray(getFavorites(), search) : getFavorites()
         let items = []
+
+        console.log('favoritos')
+
+        console.log(items)
 
         for (let i = 0; i < favorites.length; i++) {
             get(favorites[i].id,

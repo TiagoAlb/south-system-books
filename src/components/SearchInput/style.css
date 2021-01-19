@@ -69,6 +69,10 @@
         width: 0;
     }
 
+    .expandable-search:hover > .expandable-search-button {
+        width: 60px;
+    }
+
     .expandable-search:hover {
         background-color: white;
         margin-left: 20px;
@@ -81,8 +85,20 @@
         width: 0;
     }
 
+    .expandable-search:hover > .expandable-search-input.white {
+        background-color: rgb(233, 233, 233);
+    }
+
+    .expandable-search.white:hover {
+        background-color: rgb(233, 233, 233);
+    }
+
+    .expandable-search-input.white {
+        background-color: transparent;
+    }
+
     .expandable-search:hover > .expandable-search-input {
-        width: 150px;
+        width: 45vh;
         padding: 0 6px;
     }
 }

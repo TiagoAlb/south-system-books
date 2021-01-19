@@ -51,14 +51,12 @@ const Default = ({ mobile, changeDevice }) => {
                 <BookInformation />
                 <Switch>
                     {routes.map((prop, key) => {
-                        if (prop.redirect)
-                            return <Redirect from={prop.path} to={prop.to} key={key} />
-                        else return (
+                        return (
                             <Route
                                 path={prop.path}
                                 key={key}
                                 exact={true}
-                                render={(props) => <prop.component  {...props} />}
+                                component={prop.component}
                             />
                         )
                     })}

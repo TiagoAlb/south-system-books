@@ -28,7 +28,7 @@ const SearchInput = ({ white, changeSearch }) => {
             <IconButton
                 aria-label='search'
                 className={'expandable-search-button ' + (white ? 'white' : '')}
-                onClick={() => changeSearch(searchValue)}
+                onClick={() => searchValue ? changeSearch(searchValue) : null}
             >
                 <SearchIcon
                     fontSize='small'

@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const InterpolateHtmlPlugin = require('interpolate-html-plugin')
+const { PanToolSharp } = require('@material-ui/icons')
 
 const config = {
     entry: [
@@ -10,6 +11,7 @@ const config = {
     ],
     output: {
         path: path.resolve(__dirname, 'dist'),
+        publicPath: '/',
         filename: '[name].[contenthash].js'
     },
     module: {
@@ -57,10 +59,17 @@ const config = {
         }
     },
     devServer: {
-        contentBase: './dist'
+        host: '0.0.0.0',
+        port: 8080,
+        disableHostCheck: true,
+        publicPath: '/',
+        contentBase: './dist',
+        hot: true,
+        historyApiFallback: true
     },
     plugins: [
         new HtmlWebpackPlugin({
+            inject: true,
             filename: 'index.html',
             template: './public/index.html',
             favicon: './public/favicon.ico',
