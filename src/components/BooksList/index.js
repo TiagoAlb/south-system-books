@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import Grid from '@material-ui/core/Grid'
 import Card from '../Card'
-import './style.css'
 import Loading from '../Loading'
+import './style.css'
 
 export default (props) => {
     const [hasMore, setHasMore] = useState(true)

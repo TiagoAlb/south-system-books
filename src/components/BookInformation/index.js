@@ -10,6 +10,42 @@ import { book_informations_menu } from '../../lists/options'
 import './style.css'
 
 const BookInformation = ({ informations, mobile, actions }) => {
+    const Menu = () => {
+        return <div className='book-information-content-details-menu'>
+            {book_informations_menu.map((prop, key) => {
+                const link = findLink(informations, prop.name)
+                if (link) {
+                    return (
+                        <IconButton
+                            key={key}
+                            icon={prop.icon}
+                            title={prop.title}
+                            click={() => openNewTab(link)}
+                        />
+                    )
+                } else if (prop.name === 'close') {
+                    return (
+                        <IconButton
+                            key={key}
+                            icon={prop.icon}
+                            title={prop.title}
+                            click={() => actions.changeSelectedBook(null)}
+                        />
+                    )
+                } else if (prop.name === 'favorite') {
+                    return (
+                        <IconButton
+                            key={key}
+                            icon={prop.icon}
+                            title={prop.title}
+                            click={() => (saveFavorite(informations.id, informations.volumeInfo.title), alert('Livro adicionado aos favoritos.'))}
+                        />
+                    )
+                }
+            })}
+        </div>
+    }
+
     const Content = () => {
         return (
             <div className='book-information-content-details-content'>
@@ -22,6 +58,7 @@ const BookInformation = ({ informations, mobile, actions }) => {
             </div>
         )
     }
+
     return (
         <div className='book-information-content'>
             {informations ?
@@ -33,39 +70,7 @@ const BookInformation = ({ informations, mobile, actions }) => {
                         {!mobile ?
                             <Content />
                             : ''}
-                        <div className='book-information-content-details-menu'>
-                            {book_informations_menu.map((prop, key) => {
-                                const link = findLink(informations, prop.name)
-                                if (link) {
-                                    return (
-                                        <IconButton
-                                            key={key}
-                                            icon={prop.icon}
-                                            title={prop.title}
-                                            click={() => openNewTab(link)}
-                                        />
-                                    )
-                                } else if (prop.name === 'close') {
-                                    return (
-                                        <IconButton
-                                            key={key}
-                                            icon={prop.icon}
-                                            title={prop.title}
-                                            click={() => actions.changeSelectedBook(null)}
-                                        />
-                                    )
-                                } else if (prop.name === 'favorite') {
-                                    return (
-                                        <IconButton
-                                            key={key}
-                                            icon={prop.icon}
-                                            title={prop.title}
-                                            click={() => (saveFavorite(informations.id, informations.volumeInfo.title), alert('Livro adicionado aos favoritos.'))}
-                                        />
-                                    )
-                                }
-                            })}
-                        </div>
+                        <Menu />
                         {mobile ?
                             <Content />
                             : ''}

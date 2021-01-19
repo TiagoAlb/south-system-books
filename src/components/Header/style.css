@@ -22,7 +22,8 @@ header.white .header-links-li a {
 }
 
 .header-logo {
-    height: 65px;    
+    height: 65px; 
+    margin-right: 20px;   
 }
 
 .header-logo img {

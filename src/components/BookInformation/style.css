@@ -6,8 +6,7 @@
     grid-template-areas: "card informations";
     color: white;
     max-width: 100%;
-    height: 60vh;
-    margin: 20vh 0 10vh;
+    margin: 20vh 0 30vh;
     gap: 90px;
 }
 
@@ -27,6 +26,8 @@
 }
 
 .book-information-content-details {
+    display: flex;
+    flex-direction: column;
     min-width: 200px;
     text-align: justify;
     grid-area: informations;
@@ -49,6 +50,11 @@
 .book-information-content-details-menu {
     margin: 5px 0;
     text-align: right;
+    order: 2;
+}
+
+.book-information-content-details-content {
+    order: 1;
 }
 
 .book-information-content-details-menu button {
@@ -57,8 +63,20 @@
 
 @media screen and (max-width: 720px) {
     .book-information-content {
+        margin: 20vh 0 10vh;
+        gap: 0;
         grid-template-areas: 
         "card"
         "informations";
+    }
+
+    .book-information-content-details-menu {
+        margin: auto;
+        order: 1;
+    }
+
+    .book-information-content-details-content {
+        margin-top: 30vh;
+        order: 2;
     }
 }
