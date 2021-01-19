@@ -15,8 +15,8 @@ export async function get(id, success, error) {
 }
 
 export async function list(search, success, error) {
-    const searchValue = search !== '' ? search : 'design'
-    api.get(`/volumes?q=${searchValue}A`)
+    const searchValue = search !== '' ? search : 'stephen+king'
+    api.get(`/volumes?q=${searchValue}`)
         .then(res => {
             if (res.status === 200) {
                 success(res.data)

@@ -31,7 +31,7 @@ const SearchInput = ({ white, changeSearch }) => {
                 onClick={() => changeSearch(searchValue)}
             >
                 <SearchIcon
-                    fontSize='medium'
+                    fontSize='small'
                     className='expandable-search-icon'
                 />
             </IconButton>

@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="card noMenu"
+>
+  <div
+    className="card-image"
+    style={
+      Object {
+        "backgroundImage": "url(https://i2.wp.com/cenfewc.com.br/wp-content/uploads/2018/03/imagem-nao-disponivel.jpg?fit=600%2C600&ssl=1)",
+      }
+    }
+  />
+</div>
+`;
