@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { connect } from 'react-redux'
 import { mapStateToProps, mapDispatchToProps } from '../../store/functions/header'
 import { cleanSearchSpaces } from '../../utils/web_functions'
@@ -8,6 +8,7 @@ import './style.css'
 
 const SearchInput = ({ white, changeSearch }) => {
     const [searchValue, setSearchValue] = useState('')
+    const inputSearch = useRef(null)
 
     const keyPress = (e) => {
         if (e.keyCode == 13) {
@@ -20,6 +21,7 @@ const SearchInput = ({ white, changeSearch }) => {
             <input
                 className={'expandable-search-input ' + (white ? 'white' : '')}
                 type='search'
+                ref={inputSearch}
                 onChange={(e) => setSearchValue(cleanSearchSpaces(e.target.value))}
                 onKeyUp={(e) => keyPress(e)}
                 placeholder='Pesquisar'
@@ -28,7 +30,7 @@ const SearchInput = ({ white, changeSearch }) => {
             <IconButton
                 aria-label='search'
                 className={'expandable-search-button ' + (white ? 'white' : '')}
-                onClick={() => searchValue ? changeSearch(searchValue) : null}
+                onClick={() => searchValue ? changeSearch(searchValue) : inputSearch.current.focus()}
             >
                 <SearchIcon
                     fontSize='small'
