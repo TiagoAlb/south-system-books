@@ -3,9 +3,11 @@ export function findLink(item, option) {
         case 'informations':
             return item.volumeInfo.infoLink ? item.volumeInfo.infoLink : null
         case 'read':
-            return item.accessInfo.pdf.isAvailable ? item.accessInfo.webReaderLink : null
+            return item.accessInfo.webReaderLink ? item.accessInfo.webReaderLink : null
         case 'buy':
             return item.saleInfo.buyLink ? item.saleInfo.buyLink : null
+        case 'download':
+            return item.accessInfo.pdf.isAvailable ? item.accessInfo.pdf.acsTokenLink : null
         default:
             return null
     }

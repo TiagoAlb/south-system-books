@@ -8,6 +8,7 @@ export const book_informations_menu = [
     { name: 'favorite', title: 'Adicionar aos favoritos', icon: 'favorite_border_outlined' },
     { name: 'read', title: 'Ler online', icon: 'import_contacts' },
     { name: 'buy', title: 'Comprar online', icon: 'shopping_cart' },
+    { name: 'download', title: 'Baixar versão digital', icon: 'get_app' },
     { name: 'close', title: 'Fechar informações', icon: 'close' }
 ]
 

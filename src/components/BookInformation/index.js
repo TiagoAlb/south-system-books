@@ -15,7 +15,19 @@ const BookInformation = ({ informations, mobile, actions }) => {
             {book_informations_menu.map((prop, key) => {
                 const link = findLink(informations, prop.name)
                 if (link) {
-                    return (
+                    if (prop.name === 'download') {
+                        return (
+                            <a href={link} download={informations.volumeInfo.title + `-${informations.id}`}>
+                                <IconButton
+                                    key={key}
+                                    icon={prop.icon}
+                                    title={prop.title}
+                                    click={() => (
+                                        actions.changeAlert({ open: true, message: 'Baixando livro.', severity: 'success' }))}
+                                />
+                            </a>
+                        )
+                    } else return (
                         <IconButton
                             key={key}
                             icon={prop.icon}
@@ -38,7 +50,9 @@ const BookInformation = ({ informations, mobile, actions }) => {
                             key={key}
                             icon={prop.icon}
                             title={prop.title}
-                            click={() => (saveFavorite(informations.id, informations.volumeInfo.title), alert('Livro adicionado aos favoritos.'))}
+                            click={() => (
+                                saveFavorite(informations.id, informations.volumeInfo.title),
+                                actions.changeAlert({ open: true, message: 'Livro adicionado aos favoritos.', severity: 'success' }))}
                         />
                     )
                 }
