@@ -21,3 +21,9 @@ export function changeDevice(value) {
     }
 }
 
+export function changeAlert(value) {
+    return {
+        type: 'CHANGE_ALERT',
+        alert: value
+    }
+}

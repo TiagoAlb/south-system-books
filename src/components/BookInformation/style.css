@@ -14,7 +14,7 @@
     font-family: 'Raleway', sans-serif;
     font-style: italic;
     text-align: center;
-    font-size: 1.8em;
+    font-size: clamp(1em, 1em + 1.1vw, 3em);
     max-width: 650px;
     margin-top: 10vh;
 }
@@ -32,7 +32,7 @@
     text-align: justify;
     grid-area: informations;
     opacity: 0.98;
-    margin: 30px 0;
+    margin: 5vh 0;
 }
 
 .book-information-content-details h6, p {
@@ -76,7 +76,11 @@
     }
 
     .book-information-content-details-content {
-        margin-top: 30vh;
+        margin-top: 20vh;
         order: 2;
+    }
+
+    .book-information-content-card {
+        width: 250px;
     }
 }

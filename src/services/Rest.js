@@ -30,7 +30,7 @@ export async function list(search, success, error) {
 
 export async function pagedList(search, page, success, error) {
     const searchValue = search !== '' ? cleanUrlSearch(search) : 'stephen+king'
-    api.get(`/volumes?q=${searchValue}&filter=partial&startIndex=${page}&maxResults=13`)
+    api.get(`/volumes?q=${searchValue}&filter=partial&startIndex=${page}&maxResults=13&filter=ebooks`)
         .then(res => {
             if (res.status === 200) {
                 success(res.data)

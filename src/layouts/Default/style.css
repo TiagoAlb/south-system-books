@@ -9,7 +9,7 @@
 
 @media screen and (min-width: 100px) and (max-width: 576px) {
     .default-main {
-        width: calc(100% - 16vh);
-        margin: 8vh;
+        width: calc(100% - 10vh);
+        margin: 5vh;
     }
 }

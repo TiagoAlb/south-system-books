@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { Switch, Redirect, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { mapStateToProps, mapDispatchToProps } from '../../store/functions/layout'
+import Snackbar from '../../components/Snackbar'
 import BookInformation from '../../components/BookInformation'
 import Header from '../../components/Header'
 import Outdoor from '../../components/Outdoor'
 import routes from '../../routes'
 import './style.css'
 
-const Default = ({ mobile, changeDevice }) => {
+const Default = ({ mobile, alert, changeDevice, changeAlert }) => {
     const [transparentHeader, setTransparentHeader] = useState(false)
 
     useEffect(() => {
@@ -61,6 +62,7 @@ const Default = ({ mobile, changeDevice }) => {
                         )
                     })}
                 </Switch>
+                <Snackbar config={alert} setConfig={changeAlert} />
             </main>
         </div>
     )

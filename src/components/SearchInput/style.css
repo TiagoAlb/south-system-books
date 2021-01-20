@@ -98,7 +98,7 @@
     }
 
     .expandable-search:hover > .expandable-search-input {
-        width: 45vh;
+        width: 25vh;
         padding: 0 6px;
     }
 }

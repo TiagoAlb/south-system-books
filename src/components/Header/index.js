@@ -17,7 +17,7 @@ export default ({ white, reducedLogo }) => {
             <SearchInput white={white} />
             <ul className='header-links'>
                 {routes.map((prop, key) => (
-                    <li className='header-links-li' key={key}><NavLink to={prop.path}>{prop.name}</NavLink></li>
+                    <li className={`header-links-li ${key < 1 ? 'first' : ''}`} key={key}><NavLink to={prop.path}>{prop.name}</NavLink></li>
                 ))}
             </ul>
         </header>

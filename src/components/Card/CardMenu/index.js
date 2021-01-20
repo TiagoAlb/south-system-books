@@ -1,17 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { mapStateToProps, mapDispatchToProps } from '../../../store/functions/book'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '../../IconButton'
 import { formatDate } from '../../../utils/date_time_functions'
-import { toNonEmptyValue, decreaseText } from '../../../utils/web_functions'
+import { decreaseText } from '../../../utils/web_functions'
 import { card_menu } from '../../../lists/options'
 import { saveFavorite, saveRecent } from '../../../utils/api_helper'
 import './style.css'
 
 const executeScroll = () => window.scrollTo({ top: 0, behavior: 'smooth' })
 
-const CardMenu = ({ item, changeSelectedBook }) => {
+const CardMenu = ({ item, changeSelectedBook, changeAlert }) => {
+    const location = window.location.href
+    const path = location.substring(location.lastIndexOf('/') + 1)
+
     function Options() {
         return (
             <div className='card-menu-content-options'>
@@ -27,13 +30,17 @@ const CardMenu = ({ item, changeSelectedBook }) => {
                                     executeScroll())
                                 } />
                         )
-                    } else return (
-                        <IconButton
-                            key={key}
-                            icon={prop.icon}
-                            title={prop.title}
-                            click={() => (saveFavorite(item.id, item.volumeInfo.title), alert('Livro adicionado aos favoritos.'))} />
-                    )
+                    } else if (path !== 'favoritos')
+                        return (
+                            <IconButton
+                                key={key}
+                                icon={prop.icon}
+                                title={prop.title}
+                                click={() => (
+                                    saveFavorite(item.id, item.volumeInfo.title),
+                                    changeAlert({ open: true, message: 'Livro adicionado aos favoritos.', severity: 'success' })
+                                )} />
+                        )
                 })}
             </div>
         )
@@ -47,8 +54,11 @@ const CardMenu = ({ item, changeSelectedBook }) => {
                         {decreaseText(item.volumeInfo.title, 50)}
                     </Typography>
                     <Typography variant='caption' gutterBottom>
-                        {decreaseText(toNonEmptyValue(item.volumeInfo.authors, 'Autor não informado'), 50) + ' - '}
-                        {formatDate(item.volumeInfo.publishedDate, 'DD/MM/YYYY')}
+                        {item.volumeInfo.authors && item.volumeInfo.authors.length > 0 ?
+                            item.volumeInfo.authors.map((prop, key) => (
+                                key > 0 && key < 4 ? ', ' + prop : key < 4 ? prop : ''
+                            )) : 'Autor não informado'}
+                        {' - ' + formatDate(item.volumeInfo.publishedDate, 'DD/MM/YYYY')}
                     </Typography>
                 </div>
                 <Options />
