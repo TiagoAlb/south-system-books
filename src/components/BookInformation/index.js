@@ -17,7 +17,7 @@ const BookInformation = ({ informations, mobile, actions }) => {
                 if (link) {
                     if (prop.name === 'download') {
                         return (
-                            <a href={link} download={informations.volumeInfo.title + `-${informations.id}`}>
+                            <a href={link} download={informations.volumeInfo.title + `-${informations.id}`} target='_blank'>
                                 <IconBtn
                                     key={key}
                                     icon={prop.icon}
