@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { mapStateToProps, mapDispatchToProps } from '../../store/functions/layout'
-import Snackbar from '../../components/Snackbar'
+import SnackbarComponent from '../../components/Snackbar'
 import BookInformation from '../../components/BookInformation'
 import Header from '../../components/Header'
 import Outdoor from '../../components/Outdoor'
@@ -62,7 +62,7 @@ const Default = ({ mobile, alert, changeDevice, changeAlert }) => {
                         )
                     })}
                 </Switch>
-                <Snackbar config={alert} setConfig={changeAlert} />
+                <SnackbarComponent config={alert} setConfig={changeAlert} />
             </main>
         </div>
     )

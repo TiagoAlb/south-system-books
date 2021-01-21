@@ -4,7 +4,7 @@ import routes from '../../routes'
 import SearchInput from '../SearchInput'
 import './style.css'
 
-export default ({ white, reducedLogo }) => {
+const Header = ({ white, reducedLogo }) => {
     return (
         <header className={white ? 'white' : ''}>
             <div className='header-logo'>
@@ -23,3 +23,5 @@ export default ({ white, reducedLogo }) => {
         </header>
     )
 }
+
+export default Header

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { mapStateToProps, mapDispatchToProps } from '../../../store/functions/book'
 import Typography from '@material-ui/core/Typography'
-import IconButton from '../../IconButton'
+import IconBtn from '../../IconButton'
 import { formatDate } from '../../../utils/date_time_functions'
 import { decreaseText } from '../../../utils/web_functions'
 import { card_menu } from '../../../lists/options'
@@ -21,7 +21,7 @@ const CardMenu = ({ item, changeSelectedBook, changeAlert }) => {
                 {card_menu.map((prop, key) => {
                     if (prop.name !== 'favorite') {
                         return (
-                            <IconButton
+                            <IconBtn
                                 key={key}
                                 icon={prop.icon}
                                 title={prop.title}
@@ -32,7 +32,7 @@ const CardMenu = ({ item, changeSelectedBook, changeAlert }) => {
                         )
                     } else if (path !== 'favoritos')
                         return (
-                            <IconButton
+                            <IconBtn
                                 key={key}
                                 icon={prop.icon}
                                 title={prop.title}
