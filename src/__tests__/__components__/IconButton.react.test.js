@@ -1,5 +1,5 @@
 import React from 'react'
-import IconBtn from '../../components/IconButton'
+import IconBtn from '../../components/IconBtn'
 import renderer from 'react-test-renderer'
 import '@testing-library/jest-dom'
 
