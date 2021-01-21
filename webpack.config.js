@@ -154,7 +154,7 @@ module.exports = (env, argv) => {
     config.mode = env.production ? 'production' : 'development'
 
     config.plugins.push(new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify(env.NODE_ENV),
+        'process.env.NODE_ENV': 'production',
         'process.env.DEBUG': JSON.stringify(env.DEBUG),
         'process.env.production': JSON.stringify(env.production),
     }))
