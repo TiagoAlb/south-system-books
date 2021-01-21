@@ -4,7 +4,7 @@ import IconButton from '@material-ui/core/IconButton'
 import Tooltip from '../Tooltip'
 import './style.css'
 
-export default (props) => {
+const IconBtn = (props) => {
     return (
         <Tooltip text={props.title}>
             <IconButton onClick={props.click}>
@@ -13,3 +13,5 @@ export default (props) => {
         </Tooltip>
     )
 }
+
+export default IconBtn

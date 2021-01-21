@@ -5,7 +5,7 @@ import Card from '../Card'
 import Loading from '../Loading'
 import './style.css'
 
-export default (props) => {
+const BooksList = (props) => {
     const [hasMore, setHasMore] = useState(true)
     const [items, setItems] = useState([])
 
@@ -60,3 +60,5 @@ export default (props) => {
         </section>
     )
 }
+
+export default BooksList

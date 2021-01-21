@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { mapStateToProps, mapDispatchToProps } from '../../store/functions'
 import Typography from '@material-ui/core/Typography'
-import IconButton from '../IconButton'
+import IconBtn from '../IconButton'
 import Card from '../Card'
 import { openNewTab, decreaseText } from '../../utils/web_functions'
 import { findLink, saveFavorite } from '../../utils/api_helper'
@@ -18,7 +18,7 @@ const BookInformation = ({ informations, mobile, actions }) => {
                     if (prop.name === 'download') {
                         return (
                             <a href={link} download={informations.volumeInfo.title + `-${informations.id}`}>
-                                <IconButton
+                                <IconBtn
                                     key={key}
                                     icon={prop.icon}
                                     title={prop.title}
@@ -28,7 +28,7 @@ const BookInformation = ({ informations, mobile, actions }) => {
                             </a>
                         )
                     } else return (
-                        <IconButton
+                        <IconBtn
                             key={key}
                             icon={prop.icon}
                             title={prop.title}
@@ -37,7 +37,7 @@ const BookInformation = ({ informations, mobile, actions }) => {
                     )
                 } else if (prop.name === 'close') {
                     return (
-                        <IconButton
+                        <IconBtn
                             key={key}
                             icon={prop.icon}
                             title={prop.title}
@@ -46,7 +46,7 @@ const BookInformation = ({ informations, mobile, actions }) => {
                     )
                 } else if (prop.name === 'favorite') {
                     return (
-                        <IconButton
+                        <IconBtn
                             key={key}
                             icon={prop.icon}
                             title={prop.title}

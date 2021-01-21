@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.css'
 
-export default (props) => {
+const Tooltip = (props) => {
     return (
         <div className='tooltip'>
             {props.children}
@@ -9,3 +9,5 @@ export default (props) => {
         </div>
     )
 }
+
+export default Tooltip

@@ -12,7 +12,7 @@ function Items() {
     return items
 }
 
-export default () => {
+const Loading = () => {
     return (
         <div className='loading'>
             <div className='loading-items'>
@@ -21,3 +21,5 @@ export default () => {
         </div>
     )
 }
+
+export default Loading

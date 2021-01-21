@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import CardMenu from './CardMenu'
 import './style.css'
 
-export default ({ item, noMenu }) => {
+const Card = ({ item, noMenu }) => {
     return (
         <div className={`card${noMenu ? ' noMenu' : ''}`}>
             { item ?
@@ -25,3 +25,5 @@ export default ({ item, noMenu }) => {
         </div>
     )
 }
+
+export default Card
