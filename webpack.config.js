@@ -2,9 +2,11 @@ const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const InterpolateHtmlPlugin = require('interpolate-html-plugin')
-const { PanToolSharp } = require('@material-ui/icons')
+const WorkboxPlugin = require('workbox-webpack-plugin')
+const WebpackPwaManifest = require('webpack-pwa-manifest')
 
 const config = {
+    mode: 'development',
     entry: [
         'react-hot-loader/patch',
         './src/index.js'
@@ -69,25 +71,61 @@ const config = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            inject: true,
+            title: 'South System Books',
             filename: 'index.html',
             template: './public/index.html',
-            favicon: './public/favicon.ico',
-            minify: {
-                removeComments: true,
-                collapseWhitespace: true,
-                removeRedundantAttributes: true,
-                useShortDoctype: true,
-                removeEmptyAttributes: true,
-                removeStyleLinkTypeAttributes: true,
-                keepClosingSlash: true,
-                minifyJS: true,
-                minifyCSS: true,
-                minifyURLs: true,
-            },
+            favicon: './public/favicon.ico'
         }),
         new InterpolateHtmlPlugin(HtmlWebpackPlugin),
-        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/)
+        new WorkboxPlugin.GenerateSW({
+            clientsClaim: true,
+            skipWaiting: true,
+        }),
+        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
+        new WebpackPwaManifest({
+            inject: true,
+            name: 'South System Books',
+            short_name: 'South System Books',
+            background_color: '#ffffff',
+            start_url: '.',
+            display: 'standalone',
+            theme_color: '#000000',
+            icons: [
+                {
+                    src: path.resolve('public/favicon.ico'),
+                    sizes: '64x64 32x32 24x24 16x16',
+                    destination: path.join('public'),
+                    type: 'image/x-icon'
+                },
+                {
+                    src: path.resolve('public/logo16.png'),
+                    destination: path.join('public'),
+                    sizes: '64x64 32x32 24x24 16x16'
+                },
+                {
+                    src: path.resolve('public/logo32.png'),
+                    destination: path.join('public'),
+                    sizes: '64x64 32x32 24x24 16x16'
+                },
+                {
+                    src: path.resolve('public/logo225.png'),
+                    destination: path.join('public'),
+                    sizes: '512x512 256x256 128x128'
+                },
+                {
+                    src: path.resolve('public/logo225.png'),
+                    sizes: '512x512 256x256 128x128',
+                    destination: path.join('public'),
+                    purpose: 'maskable'
+                },
+                {
+                    ios: true,
+                    src: path.resolve('public/apple-touch-icon.png'),
+                    destination: path.join('public'),
+                    sizes: '180x180',
+                }
+            ]
+        })
     ],
     optimization: {
         runtimeChunk: 'single',
@@ -105,8 +143,16 @@ const config = {
 
 module.exports = (env, argv) => {
     if (argv.hot) {
-        config.output.filename = '[name].[hash].js';
+        config.output.filename = '[name].[hash].js'
     }
 
-    return config;
+    config.mode = env.production ? 'production' : 'development'
+
+    config.plugins.push(new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(env.NODE_ENV),
+        'process.env.DEBUG': JSON.stringify(env.DEBUG),
+        'process.env.production': JSON.stringify(env.production),
+    }))
+
+    return config
 }
