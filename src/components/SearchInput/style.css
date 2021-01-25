@@ -96,9 +96,9 @@
     .expandable-search-input.white {
         background-color: transparent;
     }
-
-    .expandable-search:hover > .expandable-search-input {
-        width: 25vh;
+    
+    .expandable-search:focus-within > .expandable-search-input {
+        width: 18ch;
         padding: 0 6px;
     }
 }
