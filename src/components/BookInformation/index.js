@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { mapStateToProps, mapDispatchToProps } from '../../store/functions'
 import Typography from '@material-ui/core/Typography'
-import IconBtn from '../IconButton'
+import IconBtn from '../IconBtn'
 import Card from '../Card'
 import { openNewTab, decreaseText } from '../../utils/web_functions'
 import { findLink, saveFavorite } from '../../utils/api_helper'
@@ -17,9 +17,8 @@ const BookInformation = ({ informations, mobile, actions }) => {
                 if (link) {
                     if (prop.name === 'download') {
                         return (
-                            <a href={link} download={informations.volumeInfo.title + `-${informations.id}`}>
+                            <a href={link} key={key} download={informations.volumeInfo.title + `-${informations.id}`} target='_blank'>
                                 <IconBtn
-                                    key={key}
                                     icon={prop.icon}
                                     title={prop.title}
                                     click={() => (

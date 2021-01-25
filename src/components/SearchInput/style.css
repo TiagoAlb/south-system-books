@@ -96,7 +96,7 @@
     .expandable-search-input.white {
         background-color: transparent;
     }
-
+    
     .expandable-search:hover > .expandable-search-input {
         width: 25vh;
         padding: 0 6px;
