@@ -97,8 +97,8 @@
         background-color: transparent;
     }
     
-    .expandable-search:focus-within > .expandable-search-input {
-        width: 18ch;
+    .expandable-search:hover > .expandable-search-input {
+        width: 25vh;
         padding: 0 6px;
     }
 }
